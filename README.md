@@ -1,7 +1,3 @@
----
-marp: true
----
-
 
 ![Logo](https://didepardaz.ir/wp-content/uploads/2023/05/ir.sabapp.IUT_.png)
 
