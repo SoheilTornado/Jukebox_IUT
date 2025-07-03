@@ -1,0 +1,191 @@
+
+#include "controls.h"
+
+#include <QMediaMetaData>
+
+#include "ui_controls.h"
+
+#include "../backend/player.h"
+#include "../backend/queueManager.h"
+
+
+controls::controls(QWidget *parent) :
+    QWidget(parent), ui(new Ui::controls) {
+    ui->setupUi(this);
+
+    // Player connects
+    connect(player::getInstance(), &QMediaPlayer::durationChanged, this, &controls::onDurationChanged);
+    connect(player::getInstance(), &QMediaPlayer::playbackStateChanged, this, &controls::onPlaybackStateChanged);
+    connect(player::getInstance(), &QMediaPlayer::positionChanged, this, &controls::onPositionChanged);
+    connect(player::getInstance(), &QMediaPlayer::metaDataChanged, this, &controls::onMetaDataChanged);
+
+    // Audio output connects
+    connect(player::getInstance()->audioOutput(), &QAudioOutput::mutedChanged, this, &controls::onMutedChanged);
+
+    // Button connects
+    connect(ui->playPause, &QPushButton::clicked, this, &controls::onPlayPauseClicked);
+    connect(ui->volumeButton, &QPushButton::clicked, this, &controls::onVolumeButtonClicked);
+    connect(ui->skipForwards, &QPushButton::clicked, queueManager::getInstance(), &queueManager::onSkipForward);
+    connect(ui->skipBackwards, &QPushButton::clicked, queueManager::getInstance(), &queueManager::onSkipBackward);
+    connect(ui->repeat, &QPushButton::clicked, this, &controls::onLoopStateToggled);
+    connect(ui->shuffle, &QPushButton::clicked, this, &controls::onShuffleStateToggled);
+
+    // Slider connects
+    connect(ui->volumeSlider, &QSlider::valueChanged, this, &controls::onVolumeSliderValueChanged);
+    connect(ui->progressSlider, &QSlider::sliderReleased, this, &controls::onProgressSliderReleased);
+    connect(ui->progressSlider, &QSlider::valueChanged, this, &controls::onProgressSliderValueChanged);
+
+    // Signal connects
+    connect(this, &controls::shuffleStateChanged, queueManager::getInstance(), &queueManager::onShuffleStateChanged);
+
+    ui->volumeSlider->setValue(25); // 25% volume
+    ui->cover->setPixmap(QPixmap(":image/placeholder.png").scaled(55, 55));
+}
+
+//manages the duration display and the progress slider range
+void controls::onDurationChanged(const qint64 duration) const
+{
+    ui->progressSlider->setMaximum(static_cast<int>(duration));
+
+    const QString format = duration > 3600000 ? "hh:mm:ss" : "mm:ss";
+    ui->totalTime->setText(QTime(0, 0).addMSecs(static_cast<int>(duration)).toString(format));
+}
+
+//manages the play/pause button icon
+void controls::onPlaybackStateChanged(const QMediaPlayer::PlaybackState state) const
+{
+    if (state == QMediaPlayer::PlayingState)
+    {
+        ui->playPause->setIcon(QIcon(":icon/pause.svg"));
+    }
+    else
+    {
+        ui->playPause->setIcon(QIcon(":icon/play.svg"));
+    }
+}
+
+//manages the progress slider position
+void controls::onPositionChanged(const qint64 progress) const
+{
+    if (!ui->progressSlider->isSliderDown())
+    {
+        ui->progressSlider->setValue(static_cast<int>(progress));
+    }
+}
+
+//manages the mute button icon
+void controls::onMutedChanged(const bool muted) const
+{
+    if (muted)
+    {
+        ui->volumeButton->setIcon(QIcon(":icon/volume-off.svg"));
+    }
+    else
+    {
+        ui->volumeButton->setIcon(QIcon(":icon/volume-on.svg"));
+    }
+}
+
+//plays/pauses the media player when the play/pause button is clicked
+void controls::onPlayPauseClicked() const
+{
+    auto Player = player::getInstance();
+    if (Player->isPlaying()) {
+        Player->pause();
+    } else {
+        Player->play();
+    }
+}
+
+//mutes/unmutes the media player when the volume button is clicked by calling the toggleMute function
+void controls::onVolumeButtonClicked()
+{
+    player::getInstance()->toggleMute();
+}
+
+//sets the volume of the media player (song) to the value of the volume slider
+void controls::onVolumeSliderValueChanged(int value)
+{
+    qreal floatValue = static_cast<qreal>(value) / 100.0;
+    // این خط اصلاح شد تا از floatValue استفاده کند
+    player::getInstance()->audioOutput()->setVolume(floatValue);
+    emit volumeChanged(floatValue);
+}
+
+//sets the position of the media player (song) to the value of the progress slider
+void controls::onProgressSliderReleased()
+{
+    qint64 newPosition = ui->progressSlider->value();
+    player::getInstance()->setPosition(newPosition);
+    emit seekPositionChanged(newPosition);
+}
+
+//manages the current time display of the song
+void controls::onProgressSliderValueChanged(const int value) const
+{
+    const QString format = value > 3600000 ? "hh:mm:ss" : "mm:ss";
+    ui->currentTime->setText(QTime(0, 0).addMSecs(static_cast<int>(value)).toString(format));
+}
+
+//manages the metadata display of the song
+void controls::onMetaDataChanged() const
+{
+    if (player::getInstance()->source() == QUrl()) {
+        ui->cover->setPixmap(QPixmap(":/image/placeholder.png").scaled(55, 55));
+        ui->title->setText("Select some Media");
+        ui->artist->setText("NA");
+        return;
+    }
+
+    const QMediaMetaData metaData = player::getInstance()->metaData();
+    const auto cover = metaData.value(QMediaMetaData::ThumbnailImage).value<QPixmap>();
+    const auto title = metaData.value(QMediaMetaData::Title).toString();
+    const auto artist = metaData.value(QMediaMetaData::ContributingArtist).toString();
+
+    if (!cover.isNull()) {
+        ui->cover->setPixmap(cover.scaled(55, 55));
+    } else {
+        ui->cover->setPixmap(QPixmap(":image/placeholder.png").scaled(55, 55));
+    }
+    ui->title->setText(title != "" ? title : "Unknown Title");
+    ui->artist->setText(artist != "" ? artist : "Unknown Artist");
+}
+
+//sets the icon to the corresponding loop state
+void controls::onLoopStateToggled() {
+    if (loopState == LoopingState::None)
+    {
+        loopState = LoopingState::Loop;
+        queueManager::getInstance()->setLooping(true);
+        ui->repeat->setIcon(QIcon(":icon/list-repeat.svg"));
+    }
+    else if (loopState == LoopingState::Loop)
+    {
+        loopState = LoopingState::LoopOne;
+        player::getInstance()->setLoops(QMediaPlayer::Infinite);
+        queueManager::getInstance()->setLooping(false);
+        ui->repeat->setIcon(QIcon(":icon/repeat-1.svg"));
+    }
+    else
+    {
+        loopState = LoopingState::None;
+        player::getInstance()->setLoops(1);
+        ui->repeat->setIcon(QIcon(":icon/list.svg"));
+    }
+}
+
+//sets the icon to the corresponding shuffle state
+void controls::onShuffleStateToggled() {
+    if (!shuffleState) {
+        shuffleState = true;
+        ui->shuffle->setIcon(QIcon(":icon/shuffle-active.svg"));
+    } else {
+        shuffleState = false;
+        ui->shuffle->setIcon(QIcon(":icon/shuffle.svg"));
+    }
+    emit shuffleStateChanged();
+}
+
+controls::~controls() {
+    delete ui;
+}

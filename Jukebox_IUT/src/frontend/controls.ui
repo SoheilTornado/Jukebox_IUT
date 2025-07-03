@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>controls</class>
+ <widget class="QWidget" name="controls">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1002</width>
+    <height>80</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>controls</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QWidget" name="content" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>80</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>80</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <property name="spacing">
+       <number>10</number>
+      </property>
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>10</number>
+      </property>
+      <property name="rightMargin">
+       <number>10</number>
+      </property>
+      <property name="bottomMargin">
+       <number>10</number>
+      </property>
+      <item>
+       <widget class="QWidget" name="currentlyPlaying" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>280</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>280</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="spacing">
+          <number>10</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="cover">
+           <property name="minimumSize">
+            <size>
+             <width>55</width>
+             <height>55</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>55</width>
+             <height>55</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Album Art&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="metaWrapperLayout">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="title">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Track Name&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Select some Media</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="lowerRow" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <layout class="QHBoxLayout" name="lowerRowLayout">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="artist">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Artist&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>NA</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="songControls" native="true">
+        <layout class="QVBoxLayout" name="songControlsLayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="sizeConstraint">
+          <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <layout class="QHBoxLayout" name="buttonsCentering">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QWidget" name="buttons" native="true">
+             <property name="maximumSize">
+              <size>
+               <width>400</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <layout class="QHBoxLayout" name="buttonsLayout">
+              <property name="spacing">
+               <number>20</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="repeat">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;repeat controls&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../resources/resources.qrc">
+                  <normaloff>:/icon/list.svg</normaloff>:/icon/list.svg</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="skipBackwards">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Previous&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../resources/resources.qrc">
+                  <normaloff>:/icon/skip-back.svg</normaloff>:/icon/skip-back.svg</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="playPause">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Play/Pause&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../resources/resources.qrc">
+                  <normaloff>:/icon/play.svg</normaloff>:/icon/play.svg</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="skipForwards">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Next&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../resources/resources.qrc">
+                  <normaloff>:/icon/skip-forward.svg</normaloff>:/icon/skip-forward.svg</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="shuffle">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Shuffle&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../resources/resources.qrc">
+                  <normaloff>:/icon/shuffle.svg</normaloff>:/icon/shuffle.svg</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="progressCentering">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QWidget" name="progress" native="true">
+             <property name="maximumSize">
+              <size>
+               <width>600</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <layout class="QHBoxLayout" name="progressLayout">
+              <property name="spacing">
+               <number>5</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="currentTime">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>00:00</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSlider" name="progressSlider">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Seek&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="totalTime">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>00:00</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="areaRight" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>280</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>280</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::RightToLeft</enum>
+        </property>
+        <layout class="QHBoxLayout" name="areaRightLayout" stretch="0">
+         <property name="spacing">
+          <number>10</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QWidget" name="horizontalWidget" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LayoutDirection::LeftToRight</enum>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="volumeButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Mute/Unmute&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../../resources/resources.qrc">
+                <normaloff>:/icon/volume-on.svg</normaloff>:/icon/volume-on.svg</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSlider" name="volumeSlider">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="maximum">
+               <number>200</number>
+              </property>
+              <property name="singleStep">
+               <number>1</number>
+              </property>
+              <property name="pageStep">
+               <number>10</number>
+              </property>
+              <property name="value">
+               <number>0</number>
+              </property>
+              <property name="sliderPosition">
+               <number>0</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../../resources/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

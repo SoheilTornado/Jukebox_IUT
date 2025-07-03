@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>welcomewindow</class>
+ <widget class="QMainWindow" name="welcomewindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>292</width>
+    <height>223</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QPushButton {
+    /* --- حالت عادی دکمه --- */
+    background-color: #555555; /* رنگ پس‌زمینه کمی روشن‌تر از کل صفحه */
+    color: white;              /* رنگ متن */
+    border: 1px solid #777777; /* یک حاشیه مشخص برای دکمه */
+    padding: 8px 16px;         /* فاصله متن از لبه‌های دکمه */
+    border-radius: 5px;        /* گرد کردن گوشه‌های دکمه */
+    font-size: 14px;
+}
+
+QPushButton:hover {
+    /* --- وقتی ماوس روی دکمه قرار می‌گیرد --- */
+    background-color: #666666; /* پس‌زمینه کمی روشن‌تر می‌شود */
+    border-color: #888888;
+}
+
+QPushButton:pressed {
+    /* --- وقتی دکمه فشرده می‌شود --- */
+    background-color: #444444; /* پس‌زمینه کمی تیره‌تر می‌شود */
+    border-style: inset;       /* ایجاد حس فرورفتگی */
+    padding-left: 18px;        /* حرکت جزئی متن برای حس کلیک شدن */
+    padding-top: 10px;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="btnLogin">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>121</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sign In</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnRegister">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>20</y>
+      <width>121</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sign Up</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnExit">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>90</y>
+      <width>121</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Exit</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>292</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

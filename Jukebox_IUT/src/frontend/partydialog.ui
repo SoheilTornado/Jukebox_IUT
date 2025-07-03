@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>partydialog</class>
+ <widget class="QDialog" name="partydialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>299</width>
+    <height>288</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QPushButton {
+    /* --- حالت عادی دکمه --- */
+    background-color: #555555; /* رنگ پس‌زمینه کمی روشن‌تر از کل صفحه */
+    color: white;              /* رنگ متن */
+    border: 1px solid #777777; /* یک حاشیه مشخص برای دکمه */
+    padding: 8px 16px;         /* فاصله متن از لبه‌های دکمه */
+    border-radius: 5px;        /* گرد کردن گوشه‌های دکمه */
+    font-size: 14px;
+}
+
+QPushButton:hover {
+    /* --- وقتی ماوس روی دکمه قرار می‌گیرد --- */
+    background-color: #666666; /* پس‌زمینه کمی روشن‌تر می‌شود */
+    border-color: #888888;
+}
+
+QPushButton:pressed {
+    /* --- وقتی دکمه فشرده می‌شود --- */
+    background-color: #444444; /* پس‌زمینه کمی تیره‌تر می‌شود */
+    border-style: inset;       /* ایجاد حس فرورفتگی */
+    padding-left: 18px;        /* حرکت جزئی متن برای حس کلیک شدن */
+    padding-top: 10px;
+}</string>
+  </property>
+  <widget class="QDialogButtonBox" name="buttonBox">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>250</y>
+     <width>251</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Orientation::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnCreateServer">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>40</y>
+     <width>121</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>create party</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnJoinServer">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>150</y>
+     <width>121</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>join party</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>partydialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>partydialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
